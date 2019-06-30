@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MemberDetailComponent implements OnInit {
   user: User;
+  photoList: string[] = [];
 
   constructor(private userService: UserService, private alertify: AlertifyService, private route: ActivatedRoute) { }
 
@@ -19,5 +20,10 @@ export class MemberDetailComponent implements OnInit {
       // tslint:disable-next-line:no-string-literal
       this.user = data['user'];
     });
+
+    for (const photo of this.user.photos) {
+      console.log(photo.url);
+      this.photoList.push(photo.url);
+    }
   }
 }
