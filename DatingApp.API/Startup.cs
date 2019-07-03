@@ -35,6 +35,7 @@ namespace DatingApp.API
                 });
             // Prevents "No Access-Control-Allow-Origin" error
             services.AddCors();
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddAutoMapper();
             services.AddTransient<Seed>();
             services.AddScoped<IAuthRepository, AuthRepository>();
