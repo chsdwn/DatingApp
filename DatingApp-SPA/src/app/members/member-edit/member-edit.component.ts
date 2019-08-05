@@ -14,6 +14,8 @@ import { AuthService } from 'src/app/_services/auth.service';
 export class MemberEditComponent implements OnInit {
   @ViewChild('editForm', null) editForm: NgForm;
   user: User;
+  photoUrl: string;
+
   // Shows "Are you sure to leave?" message when there are unsaved changes.
   @HostListener('window:beforeunload', ['$event'])
   unloadNotification($event: any) {
@@ -32,6 +34,7 @@ export class MemberEditComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.user = data['user'];
     });
+    this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
   }
 
   updateUser() {
